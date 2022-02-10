@@ -3,9 +3,13 @@ import { useState } from 'react';
 import { Alert, AlertTitle, Box } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
+
 import styles from '../styles/Signup.module.css';
-import Navbar from '../components/navbar';
-import Footer from '../components/footer';
+import Navbar from '../frontend/components/navbar';
+import Footer from '../frontend/components/footer';
+import axios from 'axios';
+import userpool from 'config/userpool';
 
 const Signup: NextPage = () => {
   const [fName, setFName] = useState('');
@@ -31,18 +35,41 @@ const Signup: NextPage = () => {
     setPassword(e.target.value);
   };
 
+  const setCognitoUserAttribute = (key: string, val: string) => {
+    const attribute = new CognitoUserAttribute({ Name: key, Value: val });
+    return attribute;
+  };
+
   const handleSignUp = async () => {
     setIsSigningUp(true);
     try {
       console.log('Signing up...');
-      console.log({
-        fName,
-        lName,
+
+      let attributeList = [];
+      let validationData: CognitoUserAttribute[] = [];
+
+      attributeList.push(setCognitoUserAttribute('name', fName));
+      attributeList.push(setCognitoUserAttribute('family_name', lName));
+      attributeList.push(setCognitoUserAttribute('email', email));
+
+      userpool.signUp(
         email,
         password,
-      });
+        attributeList,
+        validationData,
+        (err, result) => {
+          if (err) {
+            setError(err.message);
+            setIsSigningUp(false);
+            return;
+          } else if (result) {
+            console.log('User name is ' + result);
+            setIsSigningUp(false);
+          }
+        }
+      );
     } catch (err) {
-      // setError(err.message);
+      console.log(err);
       console.log(err);
     }
     setIsSigningUp(false);

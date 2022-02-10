@@ -3,8 +3,8 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { Alert, AlertTitle, Box } from '@mui/material';
 import styles from '../styles/Login.module.css';
-import Navbar from '../components/navbar';
-import Footer from '../components/footer';
+import Navbar from '../frontend/components/navbar';
+import Footer from '../frontend/components/footer';
 
 const Login: NextPage = () => {
   const [email, setEmail] = useState('');

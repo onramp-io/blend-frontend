@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Footer from '../components/footer';
-import Navbar from '../components/navbar';
+import Footer from '../frontend/components/footer';
+import Navbar from '../frontend/components/navbar';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {

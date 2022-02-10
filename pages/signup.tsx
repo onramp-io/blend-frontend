@@ -3,11 +3,9 @@ import { useState } from 'react';
 import { Alert, AlertTitle, Box } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 import styles from '../styles/Signup.module.css';
-import home from '../styles/Home.module.css';
-import HomeIcon from '@mui/icons-material/Home';
-import Link from 'next/link';
+import Navbar from '../components/navbar';
+import Footer from '../components/footer';
 
 const Signup: NextPage = () => {
   const [fName, setFName] = useState('');
@@ -58,11 +56,8 @@ const Signup: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={home.grid}>
-        <a href="/" className={home.card}>
-          <HomeIcon />
-        </a>
-      </div>
+      <Navbar />
+
       <Box className={styles.signup_wrapper}>
         <h1>Create a new account</h1>
         <div>
@@ -127,7 +122,7 @@ const Signup: NextPage = () => {
           <a href="/login">Login</a>
         </div>
       </Box>
-      <footer className={home.footer}>Built by Team Blend 😎</footer>
+      <Footer />
     </>
   );
 };

@@ -1,14 +1,10 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
-
 import { useState } from 'react';
-import { Alert, AlertTitle, Box } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
+import { Alert, AlertTitle, Box } from '@mui/material';
 import styles from '../styles/Login.module.css';
-import home from '../styles/Home.module.css';
-import HomeIcon from '@mui/icons-material/Home';
-import Link from 'next/link';
+import Navbar from '../components/navbar';
+import Footer from '../components/footer';
 
 const Login: NextPage = () => {
   const [email, setEmail] = useState('');
@@ -47,11 +43,8 @@ const Login: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={home.grid}>
-        <a href="/" className={home.card}>
-          <HomeIcon />
-        </a>
-      </div>
+      <Navbar />
+
       <Box className={styles.login_wrapper}>
         <h1>Login</h1>
         <div>
@@ -96,7 +89,7 @@ const Login: NextPage = () => {
           <a href="/signup">Signup</a>
         </div>
       </Box>
-      <footer className={home.footer}>Built by Team Blend 😎</footer>
+      <Footer />
     </>
   );
 };

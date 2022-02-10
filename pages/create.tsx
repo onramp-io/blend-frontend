@@ -1,12 +1,9 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
-import { useState } from 'react';
-import { Alert, AlertTitle, Box } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
+import { Box } from '@mui/material';
 import styles from '../styles/Signup.module.css';
-import home from '../styles/Home.module.css';
-import HomeIcon from '@mui/icons-material/Home';
+import Footer from '../components/footer';
+import Navbar from '../components/navbar';
 
 const Create: NextPage = () => {
   return (
@@ -17,15 +14,12 @@ const Create: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={home.grid}>
-        <a href="/" className={home.card}>
-          <HomeIcon />
-        </a>
-      </div>
+      <Navbar />
+
       <Box className={styles.signup_wrapper}>
         <h1>Create a new project</h1>
       </Box>
-      <footer className={home.footer}>Built by Team Blend 😎</footer>
+      <Footer />
     </>
   );
 };
